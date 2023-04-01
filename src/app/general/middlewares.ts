@@ -1,6 +1,6 @@
 // Scroll top
 export const scrollTop = (
-  element: HTMLElement | (Window & typeof globalThis) = window,
+  element: Element | (Window & typeof globalThis) = window,
   behavior: 'auto' | 'smooth' = 'auto',
 ) => {
   element.scrollTo({

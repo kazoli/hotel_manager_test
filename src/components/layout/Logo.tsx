@@ -11,8 +11,8 @@ function Logo(props: tProps) {
       to="/"
       className={`${props.className} content-positioner flex gap-[5px] items-center cursor-pointer bg-[#fff] h-[3rem]`}
     >
-      <FaHotel className="text-[1.5rem] text-[#476b8f]" />
-      <span className="uppercase text-[#476b8f]">hotel occupancy</span>
+      <FaHotel className="text-[1.5rem] text-[#4675a4]" />
+      <span className="uppercase text-[#4675a4] text-[1.1rem]">hotel occupancy</span>
     </NavLink>
   );
 }

@@ -8,7 +8,7 @@ function Main() {
 
   return (
     <DefaultLayout>
-      <>Home</>
+      <div className="min-h-screen">Home</div>
     </DefaultLayout>
   );
 }
