@@ -12,7 +12,7 @@ function Logo(props: tProps) {
       className={`${props.className} content-positioner flex gap-[5px] items-center cursor-pointer bg-[#fff] h-[3rem]`}
     >
       <FaHotel className="text-[1.5rem] text-[#4675a4]" />
-      <span className="uppercase text-[#4675a4] text-[1.1rem]">hotel occupancy</span>
+      <span className="uppercase text-[#4675a4] text-[1.25rem]">Hotel Manager</span>
     </NavLink>
   );
 }

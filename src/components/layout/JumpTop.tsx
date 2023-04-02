@@ -18,7 +18,7 @@ function JumpTop() {
     <>
       {jumpTop && element && (
         <AiOutlineUpSquare
-          className="fixed bottom-[15px] right-[15px] bg-[#909090] hover:bg-[#4d7fb3] text-[2rem] text-[#ffffff] cursor-pointer transition-custom opacity-50 hover:opacity-100 z-[10000]"
+          className="fixed bottom-[10px] right-[20px] bg-[#909090] hover:bg-[#4d7fb3] text-[2rem] text-[#ffffff] cursor-pointer transition-custom opacity-50 hover:opacity-100 z-[10000]"
           title="Jump top"
           onClick={() => scrollTop(element, 'smooth')}
         />

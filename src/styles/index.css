@@ -13,6 +13,7 @@
 }
 
 @layer utilities {
+  /* general start */
   .transition-custom {
     @apply transition-all duration-300;
   }
@@ -23,10 +24,28 @@
 }
 
 @layer components {
+  /* general start */
   .header-icon {
     @apply text-[1.5rem] outline-none text-[#777];
   }
 
+  .side-navigation-label {
+    @apply font-[500] text-[#4675a4] uppercase block first-of-type:mt-0 mt-[2rem];
+  }
+
+  .side-navigation-link {
+    @apply flex items-center gap-[10px] capitalize text-[#505050] hover:text-[#406b96] my-[1.25rem];
+  }
+
+  .side-navigation-link svg {
+    @apply text-[1.5rem] border border-[#a0a0a0] rounded-[2px] p-[2px] transition-custom;
+  }
+
+  .side-navigation-link:hover svg {
+    @apply shadow-[0_0_5px_1px_#4d7fb3] bg-[#4d7fb3] border-[#ffffff] text-[#fff];
+  }
+
+  /* webkit start */
   .scroll-bar::-webkit-scrollbar {
     @apply sm:w-[5px] w-[3px];
   }
@@ -41,5 +60,11 @@
 
   .scroll-bar::-webkit-scrollbar-thumb:hover {
     @apply bg-[#4d7fb3];
+  }
+
+  /* firefox start */
+  .scroll-bar {
+    scrollbar-color: #a2bdd7 #00000000;
+    scrollbar-width: thin;
   }
 }

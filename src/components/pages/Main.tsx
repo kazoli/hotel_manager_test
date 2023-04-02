@@ -3,12 +3,12 @@ import DefaultLayout from '../layout/DefaultLayout';
 
 function Main() {
   useEffect(() => {
-    document.title = 'Hotel Occupancy - Home';
+    document.title = 'Occupancy Calculation';
   }, []);
 
   return (
     <DefaultLayout>
-      <div className="min-h-screen">Home</div>
+      <div className="min-h-screen">Main</div>
     </DefaultLayout>
   );
 }
