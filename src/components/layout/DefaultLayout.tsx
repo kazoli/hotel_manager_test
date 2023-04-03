@@ -20,12 +20,12 @@ function DefaultLayout(props: tProps) {
         <SideNavigation showSideNavigation={showSideNavigation} />
         <div
           id="jump-top-content"
-          className="content-positioner md:py-[20px] py-[10px] flex-[10000_10000_auto] scroll-bar overflow-auto"
+          className="content-positioner flex-[10000_10000_auto] scroll-bar overflow-auto"
         >
           {props.children}
         </div>
-        <JumpTop />
       </main>
+      <JumpTop />
     </>
   );
 }

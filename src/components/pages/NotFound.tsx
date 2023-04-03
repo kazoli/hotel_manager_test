@@ -9,10 +9,12 @@ function NotFound() {
 
   return (
     <DefaultLayout>
-      <div className="flex flex-wrap">
-        <h1 className="w-full text-[2rem]">Requested content is not found!</h1>
-        <Link to="/" className="text-[#0000ff] text-[1.25rem] hover:underline">
-          Go back to home page
+      <div className="flex flex-wrap md:py-[5px] py-[0]">
+        <h1 className="text-[2rem] text-[#4d7fb3] font-[400] w-full">
+          Requested content is not found!
+        </h1>
+        <Link to="/" className="text-[#606060] text-[1.25rem] hover:underline pb-[10px]">
+          Go back to start page
         </Link>
       </div>
     </DefaultLayout>

@@ -25,16 +25,16 @@
 
 @layer components {
   /* general start */
-  .header-icon {
-    @apply text-[1.5rem] outline-none text-[#777];
+  .side-navigation-block {
+    @apply first-of-type:mt-0 mt-[2rem];
   }
 
   .side-navigation-label {
-    @apply font-[500] text-[#4675a4] uppercase block first-of-type:mt-0 mt-[2rem];
+    @apply font-[500] text-[#4d7fb3] uppercase block;
   }
 
   .side-navigation-link {
-    @apply flex items-center gap-[10px] capitalize text-[#505050] hover:text-[#406b96] my-[1.25rem];
+    @apply flex items-center gap-[10px] capitalize text-[#606060] hover:text-[#4d7fb3] my-[1.25rem];
   }
 
   .side-navigation-link svg {
@@ -42,7 +42,11 @@
   }
 
   .side-navigation-link:hover svg {
-    @apply shadow-[0_0_5px_1px_#4d7fb3] bg-[#4d7fb3] border-[#ffffff] text-[#fff];
+    @apply shadow-[0_0_4px_2px_#4d7fb3] bg-[#4d7fb3] border-[#ffffff] text-[#fff];
+  }
+
+  .header-icon {
+    @apply text-[1.5rem] outline-none text-[#777];
   }
 
   /* webkit start */
