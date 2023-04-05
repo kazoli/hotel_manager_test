@@ -14,7 +14,7 @@ export const hotelReducer = (state: tHotelState, action: tHotelActions) => {
       state = {
         ...state,
         status: 'idle',
-        occupancy: hotelInitialState.occupancy,
+        occupancyResults: hotelInitialState.occupancyResults,
         occupancyFormParams: hotelInitialState.occupancyFormParams,
         occupancyFormErrors: hotelInitialState.occupancyFormErrors,
       };
@@ -23,20 +23,24 @@ export const hotelReducer = (state: tHotelState, action: tHotelActions) => {
       state = {
         ...state,
         status: 'idle',
-        occupancy: action.payload,
+        occupancyResults: action.payload,
       };
       return state;
-    case tHotelActionTypes.hotelSetOccupancyParams:
+    case tHotelActionTypes.hotelSetOccupancyFormParams:
       state = {
         ...state,
         status: 'validation',
+        occupancyResults: {
+          ...state.occupancyResults,
+          show: false,
+        },
         occupancyFormParams: {
           ...state.occupancyFormParams,
           [action.payload.param]: action.payload.value,
         },
       };
       return state;
-    case tHotelActionTypes.hotelSetOccupancyErrors:
+    case tHotelActionTypes.hotelSetOccupancyFormErrors:
       state = {
         ...state,
         occupancyFormErrors: {

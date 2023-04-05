@@ -26,19 +26,24 @@ export const hotelValidateInput = (value: string) => {
 };
 
 // Hotel occupancy calculations
-export const hotelOccupancyCalculation = (hotelState: tHotelState) => {
+export const hotelOccupancyCalculation = (
+  guests: tHotelState['guests'],
+  occupancyFormParams: tHotelState['occupancyFormParams'],
+  occupancyFormErrors: tHotelState['occupancyFormErrors'],
+) => {
   // if validation error or missing value no new calculation
   if (
-    !hotelState.occupancyFormErrors.economyRooms &&
-    !hotelState.occupancyFormErrors.premiumRooms &&
-    hotelState.occupancyFormParams.economyRooms &&
-    hotelState.occupancyFormParams.premiumRooms
+    !occupancyFormErrors.economyRooms &&
+    !occupancyFormErrors.premiumRooms &&
+    occupancyFormParams.economyRooms &&
+    occupancyFormParams.premiumRooms
   ) {
-    console.log(hotelState); // TODO
-    const ecomonyGuests = [...hotelState.guests.economy];
-    const freePremiumRooms = parseFloat(hotelState.occupancyFormParams.premiumRooms);
-    const freeEconomyRooms = parseFloat(hotelState.occupancyFormParams.economyRooms);
-    const occupancy: tHotelState['occupancy'] = {
+    const ecomonyGuests = [...guests.economy];
+    const freePremiumRooms = parseFloat(occupancyFormParams.premiumRooms);
+    const freeEconomyRooms = parseFloat(occupancyFormParams.economyRooms);
+    const upgradableEconomyGuests = ecomonyGuests.length - freeEconomyRooms;
+    const occupancyResults: tHotelState['occupancyResults'] = {
+      show: true,
       premiumRooms: 0,
       economyRooms: 0,
       premiumRoomIncome: 0,
@@ -47,37 +52,52 @@ export const hotelOccupancyCalculation = (hotelState: tHotelState) => {
     };
 
     // counting occupancy and income of premium rooms
-    hotelState.guests.premium.every((guest) => {
+    guests.premium.every((guest) => {
       // if free premium rooms are fully occupied or not available at all, exit from loop
-      if (freePremiumRooms === occupancy.premiumRooms) {
+      if (freePremiumRooms === occupancyResults.premiumRooms) {
         return false;
       }
-      occupancy.premiumRooms++;
-      occupancy.premiumRoomIncome += guest;
+      occupancyResults.premiumRooms++;
+      occupancyResults.premiumRoomIncome += guest;
       return true;
     });
 
-    console.log('freePremiumRooms', freePremiumRooms); //TODO
-
-    // TODO check out guest number of economy bigger than free room number
-    // TODO push highest paying economy quests who are over the free economy rooms but can be accomodated in premium rooms
+    // Accomodate economy guests into premium rooms
+    if (upgradableEconomyGuests > 0 && freePremiumRooms > occupancyResults.premiumRooms) {
+      let upgradedEconomyGuests = 0;
+      ecomonyGuests.every((guest) => {
+        // if free premium rooms are fully occupied or not available at all, exit from loop
+        if (
+          freePremiumRooms === occupancyResults.premiumRooms ||
+          upgradableEconomyGuests === upgradedEconomyGuests
+        ) {
+          return false;
+        }
+        upgradedEconomyGuests++;
+        occupancyResults.premiumRooms++;
+        occupancyResults.premiumRoomIncome += guest;
+        return true;
+      });
+      // drop from the array those economy guests who accomodate in premium rooms
+      ecomonyGuests.splice(0, upgradedEconomyGuests);
+    }
 
     // counting occupancy and income of economy rooms
     ecomonyGuests.every((guest) => {
       // if free economy rooms are fully occupied or not available at all, exit from loop
-      if (freeEconomyRooms === occupancy.economyRooms) {
+      if (freeEconomyRooms === occupancyResults.economyRooms) {
         return false;
       }
-      occupancy.economyRooms++;
-      occupancy.economyRoomIncome += guest;
+      occupancyResults.economyRooms++;
+      occupancyResults.economyRoomIncome += guest;
       return true;
     });
 
     // counting total room income
-    occupancy.totalRoomIncome = occupancy.premiumRoomIncome + occupancy.economyRoomIncome;
-    console.log(occupancy); //TODO
+    occupancyResults.totalRoomIncome =
+      occupancyResults.premiumRoomIncome + occupancyResults.economyRoomIncome;
 
-    return occupancy;
+    return occupancyResults;
   }
   return false;
 };

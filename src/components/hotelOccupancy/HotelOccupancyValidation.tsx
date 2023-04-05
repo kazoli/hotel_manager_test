@@ -12,7 +12,7 @@ function HotelOccupancyValidation() {
     const timeOutId = setTimeout(() => {
       const errorMessage = hotelValidateInput(hotelState.occupancyFormParams.premiumRooms);
       hotelDispatch({
-        type: tHotelActionTypes['hotelSetOccupancyErrors'],
+        type: tHotelActionTypes['hotelSetOccupancyFormErrors'],
         payload: { param: 'premiumRooms', value: errorMessage },
       });
     }, settings['validationDelayMs']);
@@ -24,7 +24,7 @@ function HotelOccupancyValidation() {
     const timeOutId = setTimeout(() => {
       const errorMessage = hotelValidateInput(hotelState.occupancyFormParams.economyRooms);
       hotelDispatch({
-        type: tHotelActionTypes['hotelSetOccupancyErrors'],
+        type: tHotelActionTypes['hotelSetOccupancyFormErrors'],
         payload: { param: 'economyRooms', value: errorMessage },
       });
     }, settings['validationDelayMs']);

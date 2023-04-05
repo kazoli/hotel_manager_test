@@ -4,7 +4,8 @@ import { tActionMap } from '../general/types';
 export type tHotelState = {
   status: 'idle' | 'validation' | 'calculation';
   guests: { economy: number[]; premium: number[] };
-  occupancy: {
+  occupancyResults: {
+    show: boolean;
     premiumRooms: number;
     economyRooms: number;
     premiumRoomIncome: number;
@@ -26,20 +27,20 @@ export enum tHotelActionTypes {
   hotelSetStatus = 'hotelSetStatus',
   hotelResetOccupancyForm = 'hotelResetOccupancyForm',
   hotelSetOccupancy = 'hotelSetOccupancy',
-  hotelSetOccupancyParams = 'hotelSetOccupancyParams',
-  hotelSetOccupancyErrors = 'hotelSetOccupancyErrors',
+  hotelSetOccupancyFormParams = 'hotelSetOccupancyFormParams',
+  hotelSetOccupancyFormErrors = 'hotelSetOccupancyFormErrors',
 }
 
 // Types of payloads of hotel actions
 type tHotelPayload = {
   [tHotelActionTypes.hotelSetStatus]: tHotelState['status'];
   [tHotelActionTypes.hotelResetOccupancyForm]: undefined;
-  [tHotelActionTypes.hotelSetOccupancy]: tHotelState['occupancy'];
-  [tHotelActionTypes.hotelSetOccupancyParams]: {
+  [tHotelActionTypes.hotelSetOccupancy]: tHotelState['occupancyResults'];
+  [tHotelActionTypes.hotelSetOccupancyFormParams]: {
     param: keyof tHotelState['occupancyFormParams'];
     value: tHotelState['occupancyFormParams'][keyof tHotelState['occupancyFormParams']];
   };
-  [tHotelActionTypes.hotelSetOccupancyErrors]: {
+  [tHotelActionTypes.hotelSetOccupancyFormErrors]: {
     param: keyof tHotelState['occupancyFormErrors'];
     value: tHotelState['occupancyFormErrors'][keyof tHotelState['occupancyFormErrors']];
   };

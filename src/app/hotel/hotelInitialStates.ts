@@ -3,13 +3,14 @@ import { tHotelState } from './hotelTypes';
 import guests from './guests.json';
 
 // Limit of price of premium rooms
-const hotelPremiumLimitStart = 100;
+export const hotelPremiumLimitStart = 100;
 
 // Initial state of hotel
 export const hotelInitialState: tHotelState = {
   status: 'idle',
   guests: hotelSortGuests(guests, hotelPremiumLimitStart),
-  occupancy: {
+  occupancyResults: {
+    show: false,
     premiumRooms: 0,
     economyRooms: 0,
     premiumRoomIncome: 0,

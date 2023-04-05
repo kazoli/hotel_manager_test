@@ -34,19 +34,32 @@
   }
 
   .side-navigation-link {
-    @apply flex items-center gap-[10px] capitalize text-[#606060] hover:text-[#4d7fb3] my-[1.25rem];
+    @apply flex items-center gap-[10px] capitalize text-[#606060] hover:text-[#406b96] m-[10px_-5px] p-[5px];
   }
 
   .side-navigation-link svg {
-    @apply text-[1.5rem] border border-[#a0a0a0] rounded-[2px] p-[2px] transition-custom;
+    @apply text-[1.5rem] border border-[#a0a0a0] rounded-[3px] p-[2px] transition-custom;
   }
 
   .side-navigation-link:hover svg {
     @apply shadow-[0_0_4px_2px_#4d7fb3] bg-[#4d7fb3] border-[#ffffff] text-[#fff];
   }
 
+  .side-navigation-link.highlighted {
+    @apply shadow-[inset_0_0_25px_0_#156bd5,0_0_2px_0_#4f95ed] bg-[#99c2f5] text-[#fff] font-[500] rounded-[3px];
+  }
+
+  .side-navigation-link.highlighted svg {
+    @apply shadow-none bg-[#86b7f3] border-[#ffffff] text-[#fff];
+  }
+
   .header-icon {
     @apply text-[1.5rem] outline-none text-[#777];
+  }
+
+  /* hotel occupancy start */
+  .hotel-occupancy-result-label {
+    @apply font-[500] text-[1.1rem] text-[#505050] border-b border-[#b0b0b0] mb-[5px];
   }
 
   /* webkit start */
