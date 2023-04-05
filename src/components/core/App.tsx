@@ -1,5 +1,5 @@
 import { useReducer } from 'react';
-import { hotelReducer } from '../../app/hotel/hotelReducers';
+import { hotelReducer } from '../../app/hotel/hotelReducer';
 import { hotelInitialState } from '../../app/hotel/hotelInitialStates';
 import { ContextProvider } from './Context';
 import { ToastContainer } from 'react-toastify';

@@ -8,7 +8,7 @@ type tProps = {
 
 function Header(props: tProps) {
   return (
-    <header className="fixed top-0 left-0 right-0 z-[10000] flex items-center bg-[#fdfeff] shadow-[0_0_3px_0_#c0c0c0] h-[3rem]">
+    <header className="fixed top-0 left-0 right-0 z-[100000] flex items-center bg-[#fdfeff] shadow-[0_0_3px_0_#c0c0c0] h-[3rem]">
       <div
         className="content-positioner md:hidden"
         onClick={() => props.setShowSideNavigation(!props.showSideNavigation)}

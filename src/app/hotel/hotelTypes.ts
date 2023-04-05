@@ -1,8 +1,17 @@
+import { tActionMap } from '../general/types';
+
 // Type of state of hotel
 export type tHotelState = {
-  guestList: number[];
+  status: 'idle' | 'validation' | 'calculation';
+  guests: { economy: number[]; premium: number[] };
+  occupancy: {
+    premiumRooms: number;
+    economyRooms: number;
+    premiumRoomIncome: number;
+    economyRoomIncome: number;
+    totalRoomIncome: number;
+  };
   occupancyFormParams: {
-    allowUpgrade: boolean;
     premiumRooms: string;
     economyRooms: string;
   };
@@ -14,12 +23,18 @@ export type tHotelState = {
 
 // Types of actions for hotel reducer
 export enum tHotelActionTypes {
+  hotelSetStatus = 'hotelSetStatus',
+  hotelResetOccupancyForm = 'hotelResetOccupancyForm',
+  hotelSetOccupancy = 'hotelSetOccupancy',
   hotelSetOccupancyParams = 'hotelSetOccupancyParams',
   hotelSetOccupancyErrors = 'hotelSetOccupancyErrors',
 }
 
-// Type of payloads of hotel actions
+// Types of payloads of hotel actions
 type tHotelPayload = {
+  [tHotelActionTypes.hotelSetStatus]: tHotelState['status'];
+  [tHotelActionTypes.hotelResetOccupancyForm]: undefined;
+  [tHotelActionTypes.hotelSetOccupancy]: tHotelState['occupancy'];
   [tHotelActionTypes.hotelSetOccupancyParams]: {
     param: keyof tHotelState['occupancyFormParams'];
     value: tHotelState['occupancyFormParams'][keyof tHotelState['occupancyFormParams']];
@@ -30,17 +45,5 @@ type tHotelPayload = {
   };
 };
 
-// Action map for reducer
-type tActionMap<T extends { [key: string]: any }> = {
-  [Key in keyof T]: T[Key] extends undefined
-    ? {
-        type: Key;
-      }
-    : {
-        type: Key;
-        payload: T[Key];
-      };
-};
-
-// Type of hotel actions
+// Types of hotel actions
 export type tHotelActions = tActionMap<tHotelPayload>[keyof tActionMap<tHotelPayload>];

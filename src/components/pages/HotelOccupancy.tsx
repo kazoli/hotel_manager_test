@@ -1,10 +1,12 @@
 import { useEffect } from 'react';
 import { useAppContext } from '../core/Context';
 import { tHotelActionTypes } from '../../app/hotel/hotelTypes';
+import { settings } from '../../app/general/initialStates';
+import { hotelInitialState } from '../../app/hotel/hotelInitialStates';
+import { hotelOccupancyCalculation } from '../../app/hotel/hotelMiddlewares';
 import DefaultLayout from '../layout/DefaultLayout';
 import HotelOccupancyValidation from '../hotelOccupancy/HotelOccupancyValidation';
 import Input from '../form/Input';
-import Checkable from '../form/Checkable';
 
 function HotelOccupancy() {
   const { hotelState, hotelDispatch } = useAppContext();
@@ -15,6 +17,34 @@ function HotelOccupancy() {
 
   // Call real time validations
   HotelOccupancyValidation();
+
+  useEffect(() => {
+    // to avoid recalculations if it is not necessary
+    const timeOutId = setTimeout(() => {
+      if (hotelState.status === 'validation') {
+        // if form data changed set status to calculation
+        hotelDispatch({
+          type: tHotelActionTypes['hotelSetStatus'],
+          payload: 'calculation',
+        });
+      } else if (hotelState.status === 'calculation') {
+        // TODO unecessary
+        // if calculation requested set status to idle
+        // hotelDispatch({
+        //   type: tHotelActionTypes['hotelSetStatus'],
+        //   payload: 'idle',
+        // });
+        // calculate only if calculation was requested
+        const occupancy = hotelOccupancyCalculation(hotelState);
+        // dispatch calculated data or reset to initial state
+        hotelDispatch({
+          type: tHotelActionTypes['hotelSetOccupancy'],
+          payload: occupancy ? occupancy : hotelInitialState.occupancy,
+        });
+      }
+    }, settings['validationDelayMs']);
+    return () => clearTimeout(timeOutId);
+  }, [hotelState, hotelDispatch]);
 
   return (
     <DefaultLayout>
@@ -57,21 +87,16 @@ function HotelOccupancy() {
             error={hotelState.occupancyFormErrors.economyRooms}
           />
           <div className="mt-[15px]">
-            <Checkable
-              checked={hotelState.occupancyFormParams.allowUpgrade}
-              label="Allow highest paying economy room guest to upgrade premium room"
-              type="checkbox"
-              id="inName"
-              action={() =>
+            <span
+              className="text-[#0000ff] hover:underline cursor-pointer"
+              onClick={() =>
                 hotelDispatch({
-                  type: tHotelActionTypes['hotelSetOccupancyParams'],
-                  payload: {
-                    param: 'allowUpgrade',
-                    value: !hotelState.occupancyFormParams.allowUpgrade,
-                  },
+                  type: tHotelActionTypes['hotelResetOccupancyForm'],
                 })
               }
-            />
+            >
+              Reset form
+            </span>
           </div>
         </section>
       </div>
