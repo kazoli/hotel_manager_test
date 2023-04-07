@@ -19,7 +19,7 @@ export const hotelReducer = (state: tHotelState, action: tHotelActions) => {
         occupancyFormErrors: hotelInitialState.occupancyFormErrors,
       };
       return state;
-    case tHotelActionTypes.hotelSetOccupancy:
+    case tHotelActionTypes.hotelSetOccupancyResults:
       state = {
         ...state,
         status: 'idle',

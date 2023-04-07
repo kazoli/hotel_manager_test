@@ -24,22 +24,22 @@ function HotelOccupancy() {
     // to avoid recalculations if it is not necessary
     const timeOutId = setTimeout(() => {
       if (hotelState.status === 'validation') {
-        // if form data changed set status to calculation
+        // if form data changed, set status to calculation
         hotelDispatch({
           type: tHotelActionTypes['hotelSetStatus'],
           payload: 'calculation',
         });
       } else if (hotelState.status === 'calculation') {
         // calculate only if calculation was requested
-        const occupancy = hotelOccupancyCalculation(
+        const occupancyResults = hotelOccupancyCalculation(
           hotelState.guests,
           hotelState.occupancyFormParams,
           hotelState.occupancyFormErrors,
         );
         // dispatch calculated data or reset to initial state
         hotelDispatch({
-          type: tHotelActionTypes['hotelSetOccupancy'],
-          payload: occupancy ? occupancy : hotelInitialState.occupancyResults,
+          type: tHotelActionTypes['hotelSetOccupancyResults'],
+          payload: occupancyResults ? occupancyResults : hotelInitialState.occupancyResults,
         });
       }
     }, settings['validationDelayMs']);

@@ -7,7 +7,7 @@ function HotelRestaurant() {
       <div className="md:py-[15px] py-[10px]">
         <ContentTitle
           mainTitle="Restaurant"
-          subTitle="This only is a demonstration page for the router to work."
+          subTitle="This is only a demonstration page for the router to work."
         />
       </div>
     </DefaultLayout>

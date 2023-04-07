@@ -3,6 +3,7 @@ import validation from '../general/validation';
 
 // Sort guests into economy and premium rooms
 export const hotelSortGuests = (guests: number[], premiumLimitStart: number) => {
+  // descending order
   guests.sort((a, b) => b - a);
   const guestLists: tHotelState['guests'] = { economy: [], premium: [] };
   guests.forEach((guest) => {
@@ -62,7 +63,7 @@ export const hotelOccupancyCalculation = (
       return true;
     });
 
-    // Accomodate economy guests into premium rooms
+    // accomodate economy guests into premium rooms
     if (upgradableEconomyGuests > 0 && freePremiumRooms > occupancyResults.premiumRooms) {
       let upgradedEconomyGuests = 0;
       ecomonyGuests.every((guest) => {

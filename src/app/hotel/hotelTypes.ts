@@ -26,7 +26,7 @@ export type tHotelState = {
 export enum tHotelActionTypes {
   hotelSetStatus = 'hotelSetStatus',
   hotelResetOccupancyForm = 'hotelResetOccupancyForm',
-  hotelSetOccupancy = 'hotelSetOccupancy',
+  hotelSetOccupancyResults = 'hotelSetOccupancyResults',
   hotelSetOccupancyFormParams = 'hotelSetOccupancyFormParams',
   hotelSetOccupancyFormErrors = 'hotelSetOccupancyFormErrors',
 }
@@ -35,7 +35,7 @@ export enum tHotelActionTypes {
 type tHotelPayload = {
   [tHotelActionTypes.hotelSetStatus]: tHotelState['status'];
   [tHotelActionTypes.hotelResetOccupancyForm]: undefined;
-  [tHotelActionTypes.hotelSetOccupancy]: tHotelState['occupancyResults'];
+  [tHotelActionTypes.hotelSetOccupancyResults]: tHotelState['occupancyResults'];
   [tHotelActionTypes.hotelSetOccupancyFormParams]: {
     param: keyof tHotelState['occupancyFormParams'];
     value: tHotelState['occupancyFormParams'][keyof tHotelState['occupancyFormParams']];
