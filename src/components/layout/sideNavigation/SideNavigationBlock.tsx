@@ -10,9 +10,9 @@ function SideNavigationBlock(props: tProps) {
   return (
     <section className="side-navigation-block">
       <label className="side-navigation-label">{props.title}</label>
-      {props.links.map((link) => (
+      {props.links.map((link, index) => (
         <NavLink
-          key={link.to}
+          key={index}
           to={link.to}
           className={({ isActive }) =>
             isActive ? 'side-navigation-link highlighted' : 'side-navigation-link'
