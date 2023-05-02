@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { scrollTop } from '../../app/general/middlewares';
+import { scrollTop } from '../../../app/general/middlewares';
 import { AiOutlineUpSquare } from 'react-icons/ai';
 
 function JumpTop() {

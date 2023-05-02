@@ -1,5 +1,5 @@
-import { hotelSortGuests } from './hotelMiddlewares';
 import { tHotelState } from './hotelTypes';
+import { hotelSortGuests } from './hotelMiddlewares';
 import guests from './guests.json';
 
 // Limit of price of premium rooms

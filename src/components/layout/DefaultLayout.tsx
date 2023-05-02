@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import Header from './Header';
-import SideNavigation from './SideNavigation';
-import JumpTop from './JumpTop';
+import Header from './header/Header';
+import SideNavigation from './sideNavigation/SideNavigation';
+import JumpTop from './general/JumpTop';
 
 type tProps = {
   children: JSX.Element;

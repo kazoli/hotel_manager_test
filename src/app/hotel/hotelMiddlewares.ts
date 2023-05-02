@@ -67,7 +67,7 @@ export const hotelOccupancyCalculation = (
     if (upgradableEconomyGuests > 0 && freePremiumRooms > occupancyResults.premiumRooms) {
       let upgradedEconomyGuests = 0;
       ecomonyGuests.every((guest) => {
-        // if free premium rooms are fully occupied or not available at all, exit from loop
+        // if free premium rooms are fully occupied or all upgradable economy guests are upgraded, exit from loop
         if (
           freePremiumRooms === occupancyResults.premiumRooms ||
           upgradableEconomyGuests === upgradedEconomyGuests
@@ -79,7 +79,7 @@ export const hotelOccupancyCalculation = (
         occupancyResults.premiumRoomIncome += guest;
         return true;
       });
-      // drop from the array those economy guests who accomodate in premium rooms
+      // drop from the array those economy guests who were accomodated in premium rooms
       ecomonyGuests.splice(0, upgradedEconomyGuests);
     }
 

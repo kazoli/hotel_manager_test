@@ -1,5 +1,5 @@
 import { RiMenuFoldLine, RiMenuUnfoldLine } from 'react-icons/ri';
-import Logo from './Logo';
+import Logo from '../general/Logo';
 
 type tProps = {
   showSideNavigation: boolean;
