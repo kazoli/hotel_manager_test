@@ -12,6 +12,7 @@ function SideNavigationBlock(props: tProps) {
       <label className="side-navigation-label">{props.title}</label>
       {props.links.map((link) => (
         <NavLink
+          key={link.to}
           to={link.to}
           className={({ isActive }) =>
             isActive ? 'side-navigation-link highlighted' : 'side-navigation-link'
