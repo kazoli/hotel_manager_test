@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/hotel_manager_test/static/css/main.1427e168.css",
+    "main.js": "/hotel_manager_test/static/js/main.7152225e.js",
+    "index.html": "/hotel_manager_test/index.html",
+    "main.1427e168.css.map": "/hotel_manager_test/static/css/main.1427e168.css.map",
+    "main.7152225e.js.map": "/hotel_manager_test/static/js/main.7152225e.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1427e168.css",
+    "static/js/main.7152225e.js"
+  ]
+}
