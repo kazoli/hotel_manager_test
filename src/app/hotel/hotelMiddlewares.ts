@@ -8,9 +8,9 @@ export const hotelSortGuests = (guests: number[], premiumLimitStart: number) => 
   const guestLists: tHotelState['guests'] = { economy: [], premium: [] };
   guests.forEach((guest) => {
     if (guest < premiumLimitStart) {
-      guestLists.economy = [...guestLists.economy, guest];
+      guestLists.economy.push(guest);
     } else {
-      guestLists.premium = [...guestLists.premium, guest];
+      guestLists.premium.push(guest);
     }
   });
   return guestLists;
