@@ -8,11 +8,20 @@ function JumpTop() {
 
   useEffect(() => {
     if (element) {
-      element.addEventListener('scroll', () => setJumpTop(element.scrollTop > 50));
+      // scroll handling function
+      const handleScroll = () => {
+        const overLimit = element.scrollTop > 50;
+        // triggers setJumpTop only when previous value is changing
+        overLimit !== jumpTop && setJumpTop(overLimit);
+      };
+      // event listener
+      element.addEventListener('scroll', handleScroll);
+      // cleanup function
+      return () => element.removeEventListener('scroll', handleScroll);
     } else {
       setElement(document.querySelector('#jump-top-content'));
     }
-  }, [element]);
+  }, [element, jumpTop]);
 
   return (
     <>
